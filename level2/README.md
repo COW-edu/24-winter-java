@@ -1,49 +1,73 @@
 # 레벨 2
 package Homework2;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Level2 {
 public static void main(String[] args) {
-Scanner sc = new Scanner(System.in);
-System.out.println("덧셈할 문자열을 입력해 주세요.");
+Calculator calculator = new Calculator();
+calculator.inputNumbers();
+}
+}
 
-        String input = sc.nextLine();
+class Calculator {
+
+    public Calculator() {
+    }
+
+    public void inputNumbers() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("덧셈할 문자열을 입력해 주세요.");
+
+        String input = scanner.nextLine();
+        calculateSum(input);
+
+        scanner.close();
+    }
+
+    public void calculateSum(String input) {
+        
         if (input.isEmpty()) {
             System.out.println("결과: 0");
             return;
         }
 
-        String parts[] = exchange(input);
+        
+        String[] parts = splitInput(input);
         int sum = 0;
 
         try {
             for (String part : parts) {
+                
                 sum += Integer.parseInt(part.trim());
             }
-
             System.out.println("결과: " + sum);
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             System.out.println("숫자로 변환할 수 없는 값이 포함되어 있습니다.");
         }
-
-        sc.close();
     }
 
-    public static String[] exchange(String input) {
+    
+    public String[] splitInput(String input) {
+        
         if (input.startsWith("//")) {
             int index = input.indexOf('\n');
-            String c = input.substring(2,index);
+            if (index == -1) {
+                System.out.println("잘못된 사용자 정의 구분자 형식입니다.");
+                return new String[0];
+            }
 
-            String num = input.substring(index + 1);
+           
+            String delimiter = input.substring(2, index);
+
+            String numbers = input.substring(index + 1);
+
             
-            //이 부분에서 오류가 나는거 같습니다.....
-            String result = "[" + c + "]";
-            String[] parts1 = num.split(result);
-            return parts1;
+            String escapedDelimiter = Pattern.quote(delimiter);
+            return numbers.split(escapedDelimiter);
         }
 
-        String[] parts2 = input.split("[,:]");
-        return parts2;
+        return input.split("[,:]");
     }
 }
