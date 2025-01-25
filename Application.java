@@ -81,10 +81,10 @@ class IntCalculator {
 public class Application {
 	
 	public static void main(String[] args) {
-		InputString inputString = new InputString();
-		String input = inputString.readInput();
+	InputString inputString = new InputString();
+	String input = inputString.readInput();
 		
-		StringSplitter stringSplitter = new BasicStringSplitter();
+	StringSplitter stringSplitter = new BasicStringSplitter();
         String[] splitInput = stringSplitter.split(input);
 
         StringToInteger stringToInteger = new StringToInteger();
