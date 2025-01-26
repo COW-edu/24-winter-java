@@ -43,7 +43,7 @@ class Calculator {
                 sum += Integer.parseInt(part.trim());
             }
             System.out.println("결과: " + sum);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("숫자로 변환할 수 없는 값이 포함되어 있습니다.");
         }
     }
