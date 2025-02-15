@@ -2,15 +2,18 @@ package View;
 
 import Model.Car;
 
-import java.util.ArrayList;
 
-public class GameConsoleView implements GameView{
+public class CarGameConsoleView implements CarGameView {
     private InputHandler inputHandler;
     private OutputHandler outputHandler;
 
-    public GameConsoleView(){
+    public CarGameConsoleView(){
         this.inputHandler = new InputHandler();
         this.outputHandler = new OutputHandler();
+    }
+
+    public OutputHandler getOutputHandler(){
+        return this.outputHandler;
     }
 
     @Override
@@ -21,11 +24,6 @@ public class GameConsoleView implements GameView{
     @Override
     public int requestCount() {
         return inputHandler.getCount();
-    }
-
-    public void requestWinnerMessage(ArrayList<Car> winners){
-        outputHandler.showMessage();
-        outputHandler.showResult(winners);
     }
 
 }

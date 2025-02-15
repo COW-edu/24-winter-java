@@ -17,7 +17,7 @@ public class InputHandler {
         try{
             count = Integer.parseInt(Console.readLine());
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 시도 횟수는 숫자여야 한다.");
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
         }
         return  count;
     }

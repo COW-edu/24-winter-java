@@ -2,11 +2,13 @@ package Model;
 
 
 import camp.nextstep.edu.missionutils.Randoms;
-import org.junit.jupiter.api.MethodOrderer;
 
 public class Car {
     private final String name;
     private int position = 0;
+    private final int randomLowNumber = 1;
+    private final int randomMaxNumber = 10;
+    private final int goForwardNumber = 4;
 
     public Car(String name) {
         this.name = name;
@@ -15,12 +17,12 @@ public class Car {
     // 추가 기능 구현
 
     public void getRandomNumber(){
-        int randomNumber = Randoms.pickNumberInRange(1, 10);
-        if(randomNumber>4){
+        int randomNumber = Randoms.pickNumberInRange(randomLowNumber, randomMaxNumber);
+        if(randomNumber>=goForwardNumber){
             goForward();
         }
     }
-    public void goForward(){
+    private void goForward(){
         this.position += 1;
     }
 
@@ -28,7 +30,7 @@ public class Car {
         return this.position;
     }
 
-    public String showPosition(){
+    public String getPostionMarker(){
         return "-".repeat(this.position);
     }
 

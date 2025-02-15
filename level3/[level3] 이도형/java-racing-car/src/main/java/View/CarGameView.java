@@ -1,7 +1,6 @@
 package View;
 
-public interface GameView {
+public interface CarGameView {
     String requestNames();
     int requestCount();
-
 }
